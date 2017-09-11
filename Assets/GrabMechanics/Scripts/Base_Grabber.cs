@@ -13,12 +13,21 @@ public abstract class Base_Grabber : MonoBehaviour {
     //Attach grabber script (children of this script) to an object responsible for doing the grabbing - likely a controller
 
     public Transform GrabHandle { get { return grabAttachSpot; } set { grabAttachSpot = value; } }
-
-
+    [SerializeField]
+    
 
     void OnEnable()
     {
         //Subscribe GrabStart and GrabEnd to InputEvents for Select and DeSelect
+
+    }
+
+    void Start()
+    {
+        if (GrabHandle == null)
+        {
+            GrabHandle = transform;
+        }
     }
 
     //Responsibilities
@@ -38,6 +47,7 @@ public abstract class Base_Grabber : MonoBehaviour {
 
 
     //protected variables
+    [SerializeField]
     protected Transform grabAttachSpot;
     protected bool grabActive;
     protected float grabForgivenessRadius;

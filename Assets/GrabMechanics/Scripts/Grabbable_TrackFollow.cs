@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Grabbable_TrackFollow : Base_Grab {
 
-    protected override void StartGrab()
+    protected override void StartGrab(Grabber grabber1)
     {
-        StayGrab();
+        StayGrab(grabber1);
     }
-    protected override void StayGrab()
+    protected override void StayGrab(Grabber grabber1)
     {
 
         StartCoroutine(FollowGrab());
     }
-    protected override void EndGrab()
+    protected override void EndGrab(Grabber grabber1)
     {
         
     }

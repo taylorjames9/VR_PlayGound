@@ -26,12 +26,45 @@ public abstract class Base_Grab : MonoBehaviour
     //add/expose more joint variables here as needed
 
     protected virtual void CreateTempJoint(){}
-    protected virtual void StartGrab(){
+    protected virtual void StartGrab(Grabber grabber1){
         held = true;
+        Debug.Log("Started grabbing.");
     }
-    protected virtual void StayGrab(){}
-    protected virtual void EndGrab(){
+    protected virtual void StayGrab(Grabber grabber1)
+    {
+        Debug.Log("Stay grabbing.");
+}
+    protected virtual void EndGrab(Grabber grabber1)
+    {
         held = false;
+        Debug.Log("End grabbing.");
+
     }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.name.Equals("LeftHand") || other.name.Equals("RightHand"))
+        {
+            StartGrab(other.GetComponent<Grabber>());
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.name.Equals("LeftHand") || other.name.Equals("RightHand"))
+        {
+            StayGrab(other.GetComponent<Grabber>());
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.name.Equals("LeftHand") || other.name.Equals("RightHand"))
+        {
+            EndGrab(other.GetComponent<Grabber>());
+        }
+    }
+
 
 }

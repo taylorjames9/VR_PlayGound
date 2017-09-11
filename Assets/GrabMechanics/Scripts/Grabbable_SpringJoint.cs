@@ -13,15 +13,15 @@ public class Grabbable_SpringJoint : Base_Grab {
         //sj.spring = base.spring;
         //sj.damper = base.damper;
     }
-    protected override void StartGrab()
+    protected override void StartGrab(Grabber grabber1)
     {
         CreateTempJoint();
     }
-    protected override void StayGrab()
+    protected override void StayGrab(Grabber grabber1)
     {
 
     }
-    protected override void EndGrab()
+    protected override void EndGrab(Grabber grabber1)
     {
 
     }
