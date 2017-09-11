@@ -40,7 +40,7 @@ public abstract class Base_Grab : MonoBehaviour
     protected virtual void StayGrab(Grabber grabber1)
     {
         Debug.Log("Stay grabbing.");
-        if (grabber1.GrabActive)
+        if (!grabber1.GrabActive)
             EndGrab(grabber1);
     }
     protected virtual void EndGrab(Grabber grabber1)
@@ -54,31 +54,36 @@ public abstract class Base_Grab : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Enter");
-        if (other.GetComponent<Grabber>())
+        if (other.transform.parent.transform.parent.GetComponent<Grabber>())
         {
-            Grabber grbr = other.GetComponent<Grabber>();
-            if(grbr.GrabActive)
-                StartGrab(other.GetComponent<Grabber>());
+            Debug.Log("Our other's parent parent is a grabber");
+            Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
+            if (grbr.GrabActive)
+                StartGrab(other.transform.parent.transform.parent.GetComponent<Grabber>());
         }
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<Grabber>())
+        if (other.transform.parent.transform.parent.GetComponent<Grabber>())
         {
-            Grabber grbr = other.GetComponent<Grabber>();
+            Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
             //if (grbr.GrabActive)
-            //    StayGrab(other.GetComponent<Grabber>());
+                StayGrab(grbr);
+            Debug.Log("Trigger Stay");
+
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Grabber>())
+        if (other.transform.parent.transform.parent.GetComponent<Grabber>())
         {
-            //Grabber grbr = other.GetComponent<Grabber>();
+            Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
             //if (!grbr.GrabActive)
             //    EndGrab(other.GetComponent<Grabber>());
+            Debug.Log("Trigger Exit");
+
         }
     }
 

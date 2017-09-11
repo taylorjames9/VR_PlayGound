@@ -17,6 +17,9 @@ public abstract class Base_Grabber : MonoBehaviour {
     /// </summary>
     public event ControllerInteractionEventHandler GrabButtonReleased;
 
+    [Tooltip("The controller to listen for the events on. If the script is being applied onto a controller then this parameter can be left blank as it will be auto populated by the controller the script is on at runtime.")]
+    public VRTK_ControllerEvents ControllerEvents;
+
     //Intended Usage//
     //Attach grabber script (children of this script) to an object responsible for doing the grabbing - likely a controller
 
@@ -24,12 +27,16 @@ public abstract class Base_Grabber : MonoBehaviour {
     public bool GrabActive { get { return grabActive; } set { grabActive = value; } }
 
 
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         //Subscribe GrabStart and GrabEnd to InputEvents for Select and DeSelect
-        GrabButtonPressed += GrabStart;
-        GrabButtonReleased += GrabEnd;
+        /////GrabButtonPressed += GrabStart;
+        /////GrabButtonReleased += GrabEnd;
+        ControllerEvents.GripPressed += GrabStart;
+        ControllerEvents.GripReleased += GrabEnd;
 
+        //ControllerEvents.grab += GrabEnd;
+        Debug.Log("Ran Enabled on BASE grabber.");
     }
 
     void Start()
@@ -39,6 +46,19 @@ public abstract class Base_Grabber : MonoBehaviour {
             GrabHandle = transform;
         }
     }
+
+    //private void Update()
+    //{
+    //    if (ControllerEvents.)
+    //    {
+    //        grabActive = true;
+
+    //    } else
+    //    {
+    //        grabActive = false;
+    //    }
+    //    Debug.Log("Grab Active = " + grabActive);
+    //}
 
     //Responsibilities
     public virtual void GrabStart(object sender, ControllerInteractionEventArgs e)
