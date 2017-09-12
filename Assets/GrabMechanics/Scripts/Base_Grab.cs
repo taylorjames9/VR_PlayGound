@@ -25,13 +25,13 @@ public abstract class Base_Grab : MonoBehaviour
     protected float breakTorque;
     //add/expose more joint variables here as needed
 
-    void Start()
+    protected virtual void Start()
     {
         if (!GrabSpot)
             GrabSpot = gameObject;
     }
 
-    protected virtual void CreateTempJoint(){}
+    protected virtual void CreateTempJoint(Grabber grabber1){}
     protected virtual void StartGrab(Grabber grabber1){
         held = true;
         Debug.Log("Started grabbing.");
