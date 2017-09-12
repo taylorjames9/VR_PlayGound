@@ -35,13 +35,17 @@ public abstract class Base_Grab : MonoBehaviour
     protected virtual void StartGrab(Grabber grabber1){
         held = true;
         Debug.Log("Started grabbing.");
-        StayGrab(grabber1);
+        StartCoroutine(StayGrab(grabber1));
     }
-    protected virtual void StayGrab(Grabber grabber1)
+    protected virtual IEnumerator StayGrab(Grabber grabber1)
     {
-        Debug.Log("Stay grabbing.");
-        if (!grabber1.GrabActive)
+        while (grabber1.GrabActive)
+        {
+            Debug.Log("Stay grabbing.");
+            yield return null;
+        }
             EndGrab(grabber1);
+            yield return null;
     }
     protected virtual void EndGrab(Grabber grabber1)
     {
@@ -70,14 +74,14 @@ public abstract class Base_Grab : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.transform.parent.transform.parent.GetComponent<Grabber>())
-        {
-            Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
-            //if (grbr.GrabActive)
-                StayGrab(grbr);
-            Debug.Log("Trigger Stay");
+        //if (other.transform.parent.transform.parent.GetComponent<Grabber>())
+        //{
+        //    Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
+        //    //if (grbr.GrabActive)
+        //    StayGrab(grbr);
+        //    Debug.Log("Trigger Stay");
 
-        }
+        //}
     }
 
     void OnTriggerExit(Collider other)
@@ -89,7 +93,7 @@ public abstract class Base_Grab : MonoBehaviour
             //rend.material.SetColor("_SpecColor", Color.white);
             rend.material.color = Color.white;
 
-            Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
+            //Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
             //if (!grbr.GrabActive)
             //    EndGrab(other.GetComponent<Grabber>());
             Debug.Log("Trigger Exit");

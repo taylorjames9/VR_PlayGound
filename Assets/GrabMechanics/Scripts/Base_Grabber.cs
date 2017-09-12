@@ -39,6 +39,16 @@ public abstract class Base_Grabber : MonoBehaviour {
         Debug.Log("Ran Enabled on BASE grabber.");
     }
 
+    protected virtual void OnDisable()
+    {
+
+        ControllerEvents.GripPressed += GrabStart;
+        ControllerEvents.GripReleased += GrabEnd;
+
+        //ControllerEvents.grab += GrabEnd;
+        Debug.Log("Ran Disabled on BASE grabber.");
+    }
+
     void Start()
     {
         if (GrabHandle == null)

@@ -8,11 +8,11 @@ public class Grabbable_TrackFollow : Base_Grab {
     {
         StayGrab(grabber1);
     }
-    protected override void StayGrab(Grabber grabber1)
-    {
+    //protected override void StayGrab(Grabber grabber1)
+    //{
 
-        StartCoroutine(FollowGrab());
-    }
+    //    StartCoroutine(FollowGrab());
+    //}
     protected override void EndGrab(Grabber grabber1)
     {
         
