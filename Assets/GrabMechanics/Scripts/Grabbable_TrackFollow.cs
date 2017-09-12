@@ -51,7 +51,7 @@ public class Grabbable_TrackFollow : Base_Grab {
     {
         if(target)
             // Time.time/50f
-            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / 250f);
+            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / 5000f);
         //rotate to look at the player
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
 
