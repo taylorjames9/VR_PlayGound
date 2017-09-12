@@ -23,7 +23,9 @@ public class Grabbable_SpringJoint : Base_Grab {
         //sj.breakForce = base.breakForce;
         //sj.breakTorque = base.breakTorque;
         sj.spring = 10f;
-        sj.damper = 0.0f;
+        sj.damper = 0.5f;
+        sj.breakForce = 5;
+        sj.breakTorque = 5;
         Debug.Log("SHOULD BE CREATING A TEMP JOINT");
     }
     protected override void StartGrab(Grabber grabber1)
@@ -39,7 +41,11 @@ public class Grabbable_SpringJoint : Base_Grab {
     protected override void EndGrab(Grabber grabber1)
     {
         base.EndGrab(grabber1);
-        Debug.Log("RANNANNANANANANANANNA END GRABBBBBBBBBB");
-        Destroy(gameObject.GetComponent<SpringJoint>());
+        Debug.Log("END GRAB DESTROYING FIXED JOINT");
+        if (GetComponent<SpringJoint>())
+        {
+            GetComponent<SpringJoint>().connectedBody = null;
+            Destroy(gameObject.GetComponent<SpringJoint>());
+        }
     }
 }

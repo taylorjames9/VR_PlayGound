@@ -18,11 +18,8 @@ public class Grabbable_FixedJoint : Base_Grab {
         //sj.minDistance = 0.5f;
         //sj.maxDistance = 3.0f;
         sj.anchor = new Vector3(0, 1.0f, 0.5f);
-        //sj.tolerance = 0.05f;
-        //sj.breakForce = base.breakForce;
-        //sj.breakTorque = base.breakTorque;
-        //sj.spring = 10f;
-       // sj.damper = 0.0f;
+        sj.breakForce = 5;
+        sj.breakTorque = 5;
         Debug.Log("SHOULD BE CREATING A TEMP JOINT");
     }
     protected override void StartGrab(Grabber grabber1)
@@ -38,7 +35,12 @@ public class Grabbable_FixedJoint : Base_Grab {
     protected override void EndGrab(Grabber grabber1)
     {
         base.EndGrab(grabber1);
-        Debug.Log("RANNANNANANANANANANNA END GRABBBBBBBBBB");
-        Destroy(gameObject.GetComponent<FixedJoint>());
+        Debug.Log("END GRAB DESTROYING FIXED JOINT");
+
+        if (GetComponent<FixedJoint>())
+        {
+            GetComponent<FixedJoint>().connectedBody = null;
+            Destroy(gameObject.GetComponent<FixedJoint>());
+        }
     }
 }

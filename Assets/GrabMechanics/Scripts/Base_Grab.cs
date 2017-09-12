@@ -57,6 +57,11 @@ public abstract class Base_Grab : MonoBehaviour
         if (other.transform.parent.transform.parent.GetComponent<Grabber>())
         {
             Debug.Log("Our other's parent parent is a grabber");
+            Renderer rend = GetComponent<Renderer>();
+            //rend.material.shader = Shader.Find("Specular");
+            //rend.material.shader = Shader.PropertyToID;
+            //rend.material.SetColor("_SpecColor", Color.yellow);
+            rend.material.color = Color.yellow;
             Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
             if (grbr.GrabActive)
                 StartGrab(other.transform.parent.transform.parent.GetComponent<Grabber>());
@@ -79,6 +84,11 @@ public abstract class Base_Grab : MonoBehaviour
     {
         if (other.transform.parent.transform.parent.GetComponent<Grabber>())
         {
+            Renderer rend = GetComponent<Renderer>();
+            //rend.material.shader = Shader.Find("Specular");
+            //rend.material.SetColor("_SpecColor", Color.white);
+            rend.material.color = Color.white;
+
             Grabber grbr = other.transform.parent.transform.parent.GetComponent<Grabber>();
             //if (!grbr.GrabActive)
             //    EndGrab(other.GetComponent<Grabber>());
