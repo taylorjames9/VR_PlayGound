@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_ScalarOnePoint : MonoBehaviour {
+public class OC_ScalarOnePoint : OC_BaseScalable {
 
 	// Use this for initialization
 	void Start () {

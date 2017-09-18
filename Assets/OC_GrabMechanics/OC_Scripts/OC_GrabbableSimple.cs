@@ -36,7 +36,7 @@ public class OC_GrabbableSimple : OC_BaseGrabbable {
         if (myGrabber)
         {
             transform.position = myGrabber.GrabHandle.position;
-            Debug.Log("We have a grabber");
+            //Debug.Log("We have a grabber");
         }
     }
 

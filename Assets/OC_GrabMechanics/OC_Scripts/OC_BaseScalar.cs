@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class OC_BaseScalar : MonoBehaviour
+public abstract class OC_BaseScalar : MonoBehaviour
 {
 
     public bool ScaleByVelocity = true;
