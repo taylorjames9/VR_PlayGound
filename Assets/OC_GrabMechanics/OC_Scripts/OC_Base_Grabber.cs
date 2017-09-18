@@ -25,6 +25,8 @@ public abstract class OC_Base_Grabber : MonoBehaviour {
 
     public Transform GrabHandle { get { return grabAttachSpot; } set { grabAttachSpot = value; } }
     public bool GrabActive { get { return grabActive; } set { grabActive = value; } }
+    public GameObject HeldObject { get { return heldObject; } set { heldObject = value; } }
+
 
 
     protected virtual void OnEnable()
@@ -42,8 +44,8 @@ public abstract class OC_Base_Grabber : MonoBehaviour {
     protected virtual void OnDisable()
     {
 
-        ControllerEvents.GripPressed += GrabStart;
-        ControllerEvents.GripReleased += GrabEnd;
+        ControllerEvents.GripPressed -= GrabStart;
+        ControllerEvents.GripReleased -= GrabEnd;
 
         //ControllerEvents.grab += GrabEnd;
         Debug.Log("Ran Disabled on BASE grabber.");
@@ -85,13 +87,14 @@ public abstract class OC_Base_Grabber : MonoBehaviour {
         Debug.Log("Grab Ended.");
     }
 
-
     //protected variables
     [SerializeField]
     protected Transform grabAttachSpot;
     protected bool grabActive;
     protected float grabForgivenessRadius;
-    protected ActiveGrabButton activateGrabButton;
+    //protected GrabButton activateGrabButton;
+    private bool holding;
+    private GameObject heldObject;
 
 }
 

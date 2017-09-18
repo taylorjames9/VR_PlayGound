@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_Grabbable_SnapToOrient : OC_Base_Grab
+public class OC_Grabbable_SnapToOrient : OC_BaseGrabbable
 {
 
     protected override void StartGrab(OC_Grabber grabber1)

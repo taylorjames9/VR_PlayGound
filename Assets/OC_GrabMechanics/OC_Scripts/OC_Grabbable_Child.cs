@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_Grabbable_Child : OC_Base_Grab {
+public class OC_Grabbable_Child : OC_BaseGrabbable
+{
 
     protected override void StartGrab(OC_Grabber grabber1) {
         base.StartGrab(grabber1);

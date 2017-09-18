@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_Grabbable_TrackFollow : OC_Base_Grab {
+public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
+{
 
     public GameObject target; //the enemy's target
     public float moveSpeed = 5; //move speed

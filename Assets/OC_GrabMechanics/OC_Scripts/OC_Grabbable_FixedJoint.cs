@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_Grabbable_FixedJoint : OC_Base_Grab
+public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 {
     protected override void Start()
     {
