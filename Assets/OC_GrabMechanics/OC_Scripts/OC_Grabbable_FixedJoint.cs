@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 {
+    //expose the joint variables here for editing because the joint is added/destroyed at runtime
+    // to understand how these variables work in greater depth see documentation for spring joint and fixed joint
+    [SerializeField]
+    protected float spring = 50f;
+    [SerializeField]
+    protected float damper = 1f;
+    [SerializeField]
+    protected float breakForce = 4f;
+    [SerializeField]
+    protected float breakTorque = 2f;
+    [SerializeField]
+    protected float tolerance = 0.05f;
+    [SerializeField]
+    protected Vector3 joint_anchor = new Vector3(0, 0.05f, 0.05f);
+    [SerializeField]
+    protected float minDistance = 0.25f;
+    [SerializeField]
+    protected float maxDistance;
+
     protected override void Start()
     {
         base.Start();

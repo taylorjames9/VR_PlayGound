@@ -31,14 +31,14 @@ public class OC_Grabbable_Child : OC_BaseGrabbable
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
     }
 
-    private void Update()
-    {
-        if (myGrabber)
-        {
-            if (GetComponent<OC_ScalableObject>().ScalarsAttachedList.Count == 1)
-                transform.position = myGrabber.GrabHandle.position;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (myGrabber)
+    //    {
+    //        if (GetComponent<OC_ScalableObject>().ScalarsAttachedList.Count == 1)
+    //            transform.position = myGrabber.GrabHandle.position;
+    //    }
+    //}
 
 
 
