@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class OC_BaseScalable : MonoBehaviour {
 
+
+    public List<GameObject> ScalarsAttachedList { get { return scalarsAttachedList; } set { scalarsAttachedList = value; } }
+
     protected virtual void OnEnable()
     {
         OC_BaseGrabbable.GrabStarted += ScalarAdd;
@@ -85,9 +88,11 @@ public abstract class OC_BaseScalable : MonoBehaviour {
 
     public virtual void ScalarRemove(GameObject grabbedObj, GameObject grabber)
     {
-        if (grabber.Equals(GetComponent<OC_Grabber>()))
+        //if (grabber.Equals(GetComponent<OC_Grabber>()))
+        if(scalarsAttachedList.Contains(grabber))
         {
             scalarsAttachedList.Remove(grabber);
+            Debug.Log("Removed a scalar "+grabber.name);
         }
     }
 
@@ -95,12 +100,15 @@ public abstract class OC_BaseScalable : MonoBehaviour {
     {
         while (currentlyScaling)
         {
-            float currDistance = Vector3.Distance(scalarsAttachedList[0].transform.position, scalarsAttachedList[1].transform.position);
-            Debug.Log("SnapShot Dist = " + snapShotDistance);
-            Debug.Log("Current Dist = " + currDistance);
-            //transform.localScale =  Vector3.one * currDistance/snapShotDistance * SnapShotOfScale /*multiplier * distFromUser*/;
-            transform.localScale =  Vector3.one * ((currDistance/snapShotDistance) * snapShotOfScaleFloat) /*multiplier * distFromUser*/;
-            Debug.Log("Current SCALE = " + transform.localScale);
+            if (scalarsAttachedList.Count >= minScalarNumForScale)
+            {
+                float currDistance = Vector3.Distance(scalarsAttachedList[0].transform.position, scalarsAttachedList[1].transform.position);
+                Debug.Log("SnapShot Dist = " + snapShotDistance);
+                Debug.Log("Current Dist = " + currDistance);
+                //transform.localScale =  Vector3.one * currDistance/snapShotDistance * SnapShotOfScale /*multiplier * distFromUser*/;
+                transform.localScale = Vector3.one * ((currDistance / snapShotDistance) * snapShotOfScaleFloat) /*multiplier * distFromUser*/;
+                Debug.Log("Current SCALE = " + transform.localScale);
+            }
             yield return 0;
         }
         yield return null;
@@ -116,7 +124,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
     private bool readyToScale;
     private Vector3 snapShotOfScaleVec;
     private float snapShotOfScaleFloat;
-    private int minScalarNumForScale = 1;
+    private int minScalarNumForScale = 2;
     private bool currentlyScaling;
     private float snapShotDistance;
     //Add to the list if your object requires more than two scalars attached

@@ -18,7 +18,8 @@ public class OC_GrabbableSimple : OC_BaseGrabbable {
     protected override void StartGrab(OC_Grabber grabber1)
     {
         base.StartGrab(grabber1);
-        rb.useGravity = false;
+        if(rb)
+            rb.useGravity = false;
         Debug.Log("Grabbable Simple knows that it's being grabbed");
     }
 
@@ -28,15 +29,16 @@ public class OC_GrabbableSimple : OC_BaseGrabbable {
     protected override void EndGrab(OC_Grabber grabber1)
     {
         base.EndGrab(grabber1);
-        rb.useGravity = true;
+        if(rb)
+            rb.useGravity = true;
     }
 
     private void Update()
     {
         if (myGrabber)
         {
-            transform.position = myGrabber.GrabHandle.position;
-            //Debug.Log("We have a grabber");
+            if(GetComponent<OC_ScalableObject>().ScalarsAttachedList.Count==1)
+                transform.position = myGrabber.GrabHandle.position;
         }
     }
 

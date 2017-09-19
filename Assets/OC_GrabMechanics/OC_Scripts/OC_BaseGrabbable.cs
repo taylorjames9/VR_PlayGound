@@ -78,6 +78,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         held = false;
         myGrabber = null;
         grabber.HeldObject = null;
+        GrabEnded(gameObject, grabber.gameObject);
         Debug.Log("End Grab");
     }
 
