@@ -90,12 +90,12 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.transform.parent.transform.parent.GetComponent<OC_Grabber>())
-        {
-            //Renderer rend = GetComponent<Renderer>();
-            //rend.material.color = Color.white;
-            Debug.Log("Trigger Exit");
-        }
+        //if (other.transform.parent.transform.parent.GetComponent<OC_Grabber>())
+        //{
+        //    //Renderer rend = GetComponent<Renderer>();
+        //    //rend.material.color = Color.white;
+        //    Debug.Log("Trigger Exit");
+        //}
     }
 }
 

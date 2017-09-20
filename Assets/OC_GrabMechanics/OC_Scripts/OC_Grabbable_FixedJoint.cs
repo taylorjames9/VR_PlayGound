@@ -40,9 +40,9 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
             gameObject.AddComponent<FixedJoint>();
             FixedJoint fj = gameObject.GetComponent<FixedJoint>();
             fj.connectedBody = grabber1.GetComponent<Rigidbody>();
-            fj.anchor = new Vector3(0, 0.05f, 0.05f);
-            fj.breakForce = 4f;
-            fj.breakTorque = 2.0f;
+            //fj.anchor = new Vector3(0, 0.05f, 0.05f);
+            //fj.breakForce = 4f;
+            //fj.breakTorque = 2.0f;
             Debug.Log("SHOULD BE CREATING A TEMP JOINT");
         }
     }

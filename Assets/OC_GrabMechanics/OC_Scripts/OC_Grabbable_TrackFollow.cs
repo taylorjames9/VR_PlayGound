@@ -5,9 +5,9 @@ using UnityEngine;
 public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
 {
 
-    public GameObject target; //the enemy's target
-    public float moveSpeed = 5; //move speed
-    public float rotationSpeed = 5; //speed of turning
+    public GameObject target; 
+    public float moveSpeed = 5; 
+    public float rotationSpeed = 5; 
     private Rigidbody rb;
     //private Vector3 mytransform = target;
 
@@ -53,7 +53,7 @@ public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
     {
         if(target)
             // Time.time/50f
-            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / 5000f);
+            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / moveSpeed);
         //rotate to look at the player
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
 
