@@ -31,12 +31,28 @@ public class OC_GrabbableChild : OC_BaseGrabbable
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
     }
 
-    //private void Update()
-    //{
-    //    if (myGrabber)
-    //    {
-    //        if (GetComponent<OC_ScalableObject>().ScalarsAttachedList.Count == 1)
-    //            transform.position = myGrabber.GrabHandle.position;
-    //    }
-    //}
+    public Color TouchColor;
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    protected override void Start()
+    {
+        originalColor = GetComponent<Renderer>().material.color;
+        base.Start();
+        //CreateTempJoint();
+    }
+
+    private Color originalColor;
 }

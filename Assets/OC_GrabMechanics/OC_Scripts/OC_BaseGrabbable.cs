@@ -9,6 +9,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
 {
     public OC_Grabber MyGrabber { get { return myGrabber; } set { myGrabber = value; } }
 
+
     //I tend to leave vars protected unless I have the occasion to use them publicly, then I switch the access level to public
     protected OC_Grabber myGrabber;
     protected Transform myOriginalParent;
@@ -73,26 +74,26 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
     }
 
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Enter");
         if (other.transform.parent.transform.parent.GetComponent<OC_Grabber>())
         {
             Debug.Log("Our other's parent parent is a grabber");
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = Color.yellow;
+            //Renderer rend = GetComponent<Renderer>();
+            //rend.material.color = Color.yellow;
             OC_Grabber grbr = other.transform.parent.transform.parent.GetComponent<OC_Grabber>();
             if (grbr.GrabActive)
                 StartGrab(grbr);
         }
     }
 
-    void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.transform.parent.transform.parent.GetComponent<OC_Grabber>())
         {
-            Renderer rend = GetComponent<Renderer>();
-            rend.material.color = Color.white;
+            //Renderer rend = GetComponent<Renderer>();
+            //rend.material.color = Color.white;
             Debug.Log("Trigger Exit");
         }
     }

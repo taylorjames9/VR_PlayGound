@@ -34,7 +34,30 @@ public class OC_Grabbable_SnapToOrient : OC_BaseGrabbable
     }
 
 
+    public Color TouchColor;
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    protected override void Start()
+    {
+        originalColor = GetComponent<Renderer>().material.color;
+        base.Start();
+        //CreateTempJoint();
+    }
+
+    private Color originalColor;
 
 
 }

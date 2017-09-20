@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_GrabbableSimple : OC_BaseGrabbable { 
+public class OC_GrabbableSimple : OC_BaseGrabbable {
 
-    private Rigidbody rb;
+    public Color TouchColor;
+
 
     protected override void Start()
     {
+        originalColor = GetComponent<Renderer>().material.color;
         base.Start();
         rb = GetComponent<Rigidbody>();
     }
@@ -41,5 +43,24 @@ public class OC_GrabbableSimple : OC_BaseGrabbable {
                 transform.position = myGrabber.GrabHandle.position;
         }
     }
+
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    private Color originalColor;
+    private Rigidbody rb;
+
 
 }

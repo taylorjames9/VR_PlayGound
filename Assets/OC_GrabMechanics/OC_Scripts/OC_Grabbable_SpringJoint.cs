@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OC_Grabbable_SpringJoint : OC_BaseGrabbable
 {
+    public Color TouchColor;
 
     //expose the joint variables here for editing because the joint is added/destroyed at runtime
     // to understand how these variables work in greater depth see documentation for spring joint and fixed joint
@@ -26,14 +27,13 @@ public class OC_Grabbable_SpringJoint : OC_BaseGrabbable
 
     protected override void Start()
     {
+        originalColor = GetComponent<Renderer>().material.color;
         base.Start();
         //CreateTempJoint();
     }
 
     protected override void CreateTempJoint(OC_Grabber grabber1)
     {
-
-
         gameObject.AddComponent<SpringJoint>();
         SpringJoint sj = gameObject.GetComponent<SpringJoint>();
         sj.connectedBody = grabber1.GetComponent<Rigidbody>();
@@ -71,4 +71,20 @@ public class OC_Grabbable_SpringJoint : OC_BaseGrabbable
 
         }
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    private Color originalColor;
 }

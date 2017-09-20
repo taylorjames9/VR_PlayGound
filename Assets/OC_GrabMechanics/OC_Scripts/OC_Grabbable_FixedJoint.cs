@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 {
+    //Touch color
+    public Color TouchColor;
+
     //expose the joint variables here for editing because the joint is added/destroyed at runtime
     // to understand how these variables work in greater depth see documentation for spring joint and fixed joint
     [SerializeField]
@@ -25,6 +28,7 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 
     protected override void Start()
     {
+        originalColor = GetComponent<Renderer>().material.color;
         base.Start();
         //CreateTempJoint();
     }
@@ -63,4 +67,20 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
             Debug.Log("DESTRYOED THE FIXED JOINT");
         }
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    private Color originalColor;
 }

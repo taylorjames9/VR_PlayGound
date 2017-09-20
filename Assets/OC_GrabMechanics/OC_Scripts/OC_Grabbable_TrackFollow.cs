@@ -13,6 +13,7 @@ public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
 
     protected override void Start()
     {
+        originalColor = GetComponent<Renderer>().material.color;
         base.Start();
         rb = GetComponent<Rigidbody>();
     }
@@ -60,5 +61,23 @@ public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
         //move towards the player
         // transform.position += transform.forward * Time.deltaTime * moveSpeed;
     }
+
+    public Color TouchColor;
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = TouchColor;
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.color = originalColor;
+    }
+
+    private Color originalColor;
 
 }
