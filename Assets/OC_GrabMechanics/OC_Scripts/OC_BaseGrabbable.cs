@@ -77,14 +77,20 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Enter");
-        if (other.transform.parent.transform.parent.GetComponent<OC_Grabber>())
+        if (other.transform.parent != null)
         {
-            Debug.Log("Our other's parent parent is a grabber");
-            //Renderer rend = GetComponent<Renderer>();
-            //rend.material.color = Color.yellow;
-            OC_Grabber grbr = other.transform.parent.transform.parent.GetComponent<OC_Grabber>();
-            if (grbr.GrabActive)
-                StartGrab(grbr);
+            if (other.transform.parent.parent != null)
+            {
+                if (other.transform.parent.parent.GetComponent<OC_Grabber>())
+                {
+                    Debug.Log("Our other's parent parent is a grabber");
+                    //Renderer rend = GetComponent<Renderer>();
+                    //rend.material.color = Color.yellow;
+                    OC_Grabber grbr = other.transform.parent.transform.parent.GetComponent<OC_Grabber>();
+                    if (grbr.GrabActive)
+                        StartGrab(grbr);
+                }
+            }
         }
     }
 
