@@ -35,14 +35,16 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 
     protected override void CreateTempJoint(OC_Grabber grabber1)
     {
-
-        gameObject.AddComponent<FixedJoint>();
-        FixedJoint sj = gameObject.GetComponent<FixedJoint>();
-        sj.connectedBody = grabber1.GetComponent<Rigidbody>();
-        sj.anchor = new Vector3(0, 0.05f, 0.05f);
-        sj.breakForce = 4f;
-        sj.breakTorque = 2.0f;
-        Debug.Log("SHOULD BE CREATING A TEMP JOINT");
+        if (!GetComponent<FixedJoint>())
+        {
+            gameObject.AddComponent<FixedJoint>();
+            FixedJoint fj = gameObject.GetComponent<FixedJoint>();
+            fj.connectedBody = grabber1.GetComponent<Rigidbody>();
+            fj.anchor = new Vector3(0, 0.05f, 0.05f);
+            fj.breakForce = 4f;
+            fj.breakTorque = 2.0f;
+            Debug.Log("SHOULD BE CREATING A TEMP JOINT");
+        }
     }
     protected override void StartGrab(OC_Grabber grabber1)
     {
