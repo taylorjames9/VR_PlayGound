@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_Grabbable_Child : OC_BaseGrabbable
+public class OC_GrabbableChild : OC_BaseGrabbable
 {
 
     protected override void StartGrab(OC_Grabber grabber1) {
         base.StartGrab(grabber1);
+        //base.GrabStarted(gameObject, grabber.gameObject);
+
         Debug.Log("Did base line.");
         transform.SetParent(grabber1.transform);
         Debug.Log("Did set parent.");
@@ -14,14 +16,12 @@ public class OC_Grabbable_Child : OC_BaseGrabbable
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         Debug.Log("Did isKinematic line.");
 
-        transform.rotation = Quaternion.identity;
-        Debug.Log("Did rotate line.");
-
     }
 
     protected override void EndGrab(OC_Grabber grabber1) {
 
         base.EndGrab(grabber1);
+        //OC_BaseGrabbable.GrabEnded(gameObject, grabber1.gameObject);
         Debug.Log("This is WHERE WE SHOULD BE RELEASING");
         //if (myOriginalParent == null)
         //    transform.SetParent(null);
@@ -39,7 +39,4 @@ public class OC_Grabbable_Child : OC_BaseGrabbable
     //            transform.position = myGrabber.GrabHandle.position;
     //    }
     //}
-
-
-
 }

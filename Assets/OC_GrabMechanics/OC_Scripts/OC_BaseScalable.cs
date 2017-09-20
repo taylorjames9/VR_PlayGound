@@ -47,7 +47,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
                 Debug.Log("We're inside scale and scale by velocity");
                 foreach(GameObject sclr in scalarsAttachedList)
                 {
-                    Debug.Log("Velocity of scalar obj " +sclr.GetComponent<OC_BaseScalar>().Velocity.ToString());
+                    Debug.Log("Velocity of scalar obj " +sclr.GetComponent<OC_BaseGrabber>().Velocity.ToString());
                 }
             }
 
@@ -70,7 +70,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
         }
     }
 
-    public void ScalarAdd(GameObject grabbedObj, GameObject grabber)
+    public void ScalarAdd(GameObject grabber)
     {
         Debug.Log("adding a scalar!");
         if (!scalarsAttachedList.Contains(grabber))
@@ -86,7 +86,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
         }
     }
 
-    public virtual void ScalarRemove(GameObject grabbedObj, GameObject grabber)
+    public virtual void ScalarRemove(GameObject grabber)
     {
         //if (grabber.Equals(GetComponent<OC_Grabber>()))
         if(scalarsAttachedList.Contains(grabber))

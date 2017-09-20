@@ -21,10 +21,11 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
     protected GameObject GrabAttachSpot;
     protected bool held;
 
-    public delegate void GrabActive(GameObject grabbedObj, GameObject grabber);
+    //public delegate void GrabActive(GameObject grabbedObj, GameObject grabber);
+    public delegate void GrabActive(GameObject grabber);
     public static event GrabActive GrabStarted;
 
-    public delegate void GrabFalse(GameObject grabbedObj, GameObject grabber);
+    public delegate void GrabFalse(GameObject grabber);
     public static event GrabFalse GrabEnded;
 
 
@@ -44,7 +45,10 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         Debug.Log("Start Grab");
         myGrabber = grabber;
         grabber.HeldObject = gameObject;
-        GrabStarted(gameObject, grabber.gameObject);
+        if (GetComponent<OC_BaseScalable>())
+        {
+            GrabStarted(grabber.gameObject);
+        }
         StartCoroutine(StayGrab(grabber));
     }
     protected virtual IEnumerator StayGrab(OC_Grabber grabber)
@@ -61,7 +65,10 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         held = false;
         myGrabber = null;
         grabber.HeldObject = null;
-        GrabEnded(gameObject, grabber.gameObject);
+        if (GetComponent<OC_BaseScalable>())
+        {
+            GrabEnded(grabber.gameObject);
+        }
         Debug.Log("End Grab");
     }
 

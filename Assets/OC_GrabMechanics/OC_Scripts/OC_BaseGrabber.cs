@@ -6,7 +6,7 @@ using UnityEngine;
 using VRTK;
 
 
-public abstract class OC_Base_Grabber : MonoBehaviour {
+public abstract class OC_BaseGrabber : MonoBehaviour {
 
     /// <summary>
     /// Emitted when the grab button is pressed.
@@ -26,7 +26,7 @@ public abstract class OC_Base_Grabber : MonoBehaviour {
     public Transform GrabHandle { get { return grabAttachSpot; } set { grabAttachSpot = value; } }
     public bool GrabActive { get { return grabActive; } set { grabActive = value; } }
     public GameObject HeldObject { get { return heldObject; } set { heldObject = value; } }
-
+    public Vector3 Velocity { get { return velocity; } set { velocity = value; } }
 
 
     protected virtual void OnEnable()
@@ -95,6 +95,14 @@ public abstract class OC_Base_Grabber : MonoBehaviour {
     //protected GrabButton activateGrabButton;
     private bool holding;
     private GameObject heldObject;
+
+    //for scaling
+    private Rigidbody rb;
+    private Vector3 velocity;
+    private GameObject myGrabbedObject;
+    private float scaleMulitplier;
+    private Vector3 attachPoint;
+
 
 }
 

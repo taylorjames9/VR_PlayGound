@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class OC_Grabber : OC_Base_Grabber {
+public class OC_Grabber : OC_BaseGrabber {
 
 
 
