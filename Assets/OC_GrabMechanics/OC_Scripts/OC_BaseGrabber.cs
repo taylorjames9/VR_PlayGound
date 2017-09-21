@@ -45,7 +45,7 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
         ControllerEvents.GripReleased += GrabEnd;
 
         //ControllerEvents.grab += GrabEnd;
-        Debug.Log("Ran Enabled on BASE grabber.");
+        //Debug.Log("Ran Enabled on BASE grabber.");
     }
 
     protected virtual void OnDisable()
@@ -55,7 +55,7 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
         ControllerEvents.GripReleased -= GrabEnd;
 
         //ControllerEvents.grab += GrabEnd;
-        Debug.Log("Ran Disabled on BASE grabber.");
+        //Debug.Log("Ran Disabled on BASE grabber.");
     }
 
     void Start()
@@ -84,14 +84,14 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
     {
         //Do something
         grabActive = true;
-        Debug.Log("Grab Initiated.");
+        Debug.Log("Grab Initiated -- by grabber");
     }
 
     public virtual void GrabEnd(object sender, ControllerInteractionEventArgs e)
     {
         //Do something
         grabActive = false;
-        Debug.Log("Grab Ended. -- From Controller");
+        Debug.Log("Grab Ended. -- From grabber");
     }
 
     //protected variables

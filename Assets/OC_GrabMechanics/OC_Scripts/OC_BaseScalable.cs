@@ -22,7 +22,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
 
     protected void Start()
     {
-        Debug.Log("ran start.");
+        //Debug.Log("ran start.");
     }
 
 

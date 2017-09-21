@@ -52,36 +52,15 @@ public abstract class OC_BaseUsable : MonoBehaviour {
 
     protected virtual void UseStarted(object sender, ControllerInteractionEventArgs e)
     {
-        touchPadActive = true;
-        UseStartedEvent();
-        //switch(ActivateUseButton){
-        //    case ButtonChoice.Trigger:
-
-        //    break;
-        //    case ButtonChoice.Touchpad:
-        //        Debug.Log("TOUCHPAD Use is active");
-        //        UseStartedEvent();
-        //        break;
-        //}
+        if(ActivateUseButton.Equals(ButtonChoice.Touchpad))
+            touchPadActive = true;
     }
 
     protected virtual void UseEnded(object sender, ControllerInteractionEventArgs e)
     {
-        touchPadActive = false;
-
-        //switch (ActivateUseButton)
-        //{
-        //    case ButtonChoice.Trigger:
-
-        //        break;
-        //    case ButtonChoice.Touchpad:
-        //        Debug.Log("TOUCHPAD Use is UNNNNNAAAActive");
-        //        UseEndedEvent();
-        //        break;
-        //}
+        if (ActivateUseButton.Equals(ButtonChoice.Touchpad))
+            touchPadActive = false;
     }
-
-
 
 
     protected bool touchPadActive;

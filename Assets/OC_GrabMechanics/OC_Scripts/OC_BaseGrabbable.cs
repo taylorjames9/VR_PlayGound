@@ -40,7 +40,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
     protected virtual void CreateTempJoint(OC_Grabber grabber){}
     protected virtual void StartGrab(OC_Grabber grabber){
         held = true;
-        Debug.Log("Start Grab");
+        Debug.Log("Start Grab -- from grabbbable");
         myGrabber = grabber;
         grabber.HeldObject = gameObject;
         if (GetComponent<OC_BaseScalable>())
@@ -67,7 +67,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         {
             GrabEnded(grabber.gameObject);
         }
-        Debug.Log("End Grab");
+        Debug.Log("End Grab -- from grabbable");
     }
 
 
@@ -80,7 +80,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
             {
                 if (other.transform.parent.parent.GetComponent<OC_Grabber>())
                 {
-                    Debug.Log("Our other's parent parent is a grabber");
+                    //Debug.Log("Our other's parent parent is a grabber");
                     //Renderer rend = GetComponent<Renderer>();
                     //rend.material.color = Color.yellow;
                     OC_Grabber grbr = other.transform.parent.transform.parent.GetComponent<OC_Grabber>();
