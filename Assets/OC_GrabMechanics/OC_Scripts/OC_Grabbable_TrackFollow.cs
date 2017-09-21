@@ -53,7 +53,7 @@ public class OC_Grabbable_TrackFollow : OC_BaseGrabbable
     {
         if(target)
             // Time.time/50f
-            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / moveSpeed);
+            transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.time / (moveSpeed*1000));
         //rotate to look at the player
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
 

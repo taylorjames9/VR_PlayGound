@@ -29,9 +29,6 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
     public delegate void GrabFalse(GameObject grabber);
     public static event GrabFalse GrabEnded;
 
-
-
-
     //if a grab handle is not specified, assume that the attach point is the grabbable object's transform
     protected virtual void Start()
     {

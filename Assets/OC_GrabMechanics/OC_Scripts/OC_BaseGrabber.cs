@@ -5,6 +5,13 @@ using UnityEngine;
 //using UnityEngine.XR.WSA.Input;
 using VRTK;
 
+public enum ButtonChoice
+{
+    None,
+    Trigger,
+    Grip,
+    Touchpad
+}
 
 public abstract class OC_BaseGrabber : MonoBehaviour {
 
@@ -106,9 +113,4 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
 
 }
 
-public enum ActiveGrabButton{
-    None,
-    Trigger,
-    Grip,
-    Touchpad
-}
+

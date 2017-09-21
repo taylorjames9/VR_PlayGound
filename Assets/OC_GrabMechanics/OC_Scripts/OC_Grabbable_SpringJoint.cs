@@ -9,19 +9,19 @@ public class OC_Grabbable_SpringJoint : OC_BaseGrabbable
     //expose the joint variables here for editing because the joint is added/destroyed at runtime
     // to understand how these variables work in greater depth see documentation for spring joint and fixed joint
     [SerializeField]
-    protected float spring = 50f;
+    protected float spring;
     [SerializeField]
-    protected float damper = 1f;
+    protected float damper;
     [SerializeField]
-    protected float breakForce = 4f;
+    protected float breakForce;
     [SerializeField]
-    protected float breakTorque = 2f;
+    protected float breakTorque;
     [SerializeField]
-    protected float tolerance = 0.05f;
+    protected float tolerance;
     [SerializeField]
-    protected Vector3 joint_anchor = new Vector3(0, 0.05f, 0.05f);
+    protected Vector3 joint_anchor;
     [SerializeField]
-    protected float minDistance = 0.25f;
+    protected float minDistance; 
     [SerializeField]
     protected float maxDistance;
 
@@ -39,14 +39,12 @@ public class OC_Grabbable_SpringJoint : OC_BaseGrabbable
         sj.connectedBody = grabber1.GetComponent<Rigidbody>();
         //sj.minDistance = 0.5f;
         //sj.maxDistance = 3.0f;
-        sj.anchor = new Vector3(0, 0.55f, 0.25f);
-        sj.tolerance = 0.05f;
-        //sj.breakForce = base.breakForce;
-        //sj.breakTorque = base.breakTorque;
-        sj.spring = 50f;
-        sj.damper = 1f;
-        sj.breakForce = 5f;
-        sj.breakTorque = 3f;
+        sj.anchor = new Vector3(0, 0.01f, 0.01f);
+        sj.tolerance = tolerance;
+        sj.breakForce = breakForce;
+        sj.breakTorque = breakTorque;
+        sj.spring = spring;
+        sj.damper = damper;
         Debug.Log("SHOULD BE CREATING A TEMP JOINT");
     }
     protected override void StartGrab(OC_Grabber grabber1)

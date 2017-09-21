@@ -10,19 +10,15 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
     //expose the joint variables here for editing because the joint is added/destroyed at runtime
     // to understand how these variables work in greater depth see documentation for spring joint and fixed joint
     [SerializeField]
-    protected float spring = 50f;
+    protected float breakForce ;
     [SerializeField]
-    protected float damper = 1f;
+    protected float breakTorque ;
     [SerializeField]
-    protected float breakForce = 4f;
+    protected float tolerance ;
     [SerializeField]
-    protected float breakTorque = 2f;
+    protected Vector3 joint_anchor ;
     [SerializeField]
-    protected float tolerance = 0.05f;
-    [SerializeField]
-    protected Vector3 joint_anchor = new Vector3(0, 0.05f, 0.05f);
-    [SerializeField]
-    protected float minDistance = 0.25f;
+    protected float minDistance ;
     [SerializeField]
     protected float maxDistance;
 
@@ -40,9 +36,9 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
             gameObject.AddComponent<FixedJoint>();
             FixedJoint fj = gameObject.GetComponent<FixedJoint>();
             fj.connectedBody = grabber1.GetComponent<Rigidbody>();
-            //fj.anchor = new Vector3(0, 0.05f, 0.05f);
-            //fj.breakForce = 4f;
-            //fj.breakTorque = 2.0f;
+            fj.anchor = joint_anchor;
+            fj.breakForce = breakForce;
+            fj.breakTorque = breakTorque;
             Debug.Log("SHOULD BE CREATING A TEMP JOINT");
         }
     }

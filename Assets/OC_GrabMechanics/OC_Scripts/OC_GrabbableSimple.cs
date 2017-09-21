@@ -39,8 +39,7 @@ public class OC_GrabbableSimple : OC_BaseGrabbable {
     {
         if (myGrabber)
         {
-            if(GetComponent<OC_ScalableObject>().ScalarsAttachedList.Count==1)
-                transform.position = myGrabber.GrabHandle.position;
+           transform.position = myGrabber.GrabHandle.position;
         }
     }
 
