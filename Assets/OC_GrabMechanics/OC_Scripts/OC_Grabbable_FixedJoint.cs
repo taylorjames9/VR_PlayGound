@@ -58,7 +58,7 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
 
     protected override void EndGrab(OC_Grabber grabber1)
     {
-        //base.EndGrab(grabber1);
+        base.EndGrab(grabber1);
         Debug.Log("END GRAB DESTROYING FIXED JOINT");
 
         if (GetComponent<FixedJoint>() != null)

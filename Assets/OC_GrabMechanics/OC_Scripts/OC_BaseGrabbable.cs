@@ -76,7 +76,7 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Enter");
+        //Debug.Log("Trigger Enter");
         if (other.transform.parent != null)
         {
             if (other.transform.parent.parent != null)

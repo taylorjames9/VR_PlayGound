@@ -72,14 +72,14 @@ public abstract class OC_BaseScalable : MonoBehaviour {
 
     public void ScalarAdd(GameObject grabber)
     {
-        Debug.Log("adding a scalar!");
+        //Debug.Log("adding a scalar!");
         if (!scalarsAttachedList.Contains(grabber))
         {
-            Debug.Log("this scalars attached list does not contain our grabber attached to this GameObject!");
+            //Debug.Log("this scalars attached list does not contain our grabber attached to this GameObject!");
             if (grabber.Equals(GetComponent<OC_BaseGrabbable>().MyGrabber.gameObject))
             {
                 scalarsAttachedList.Add(grabber);
-                Debug.Log("Ran attempt scale ... Number of grabbers = " + scalarsAttachedList.Count);
+                //Debug.Log("Ran attempt scale ... Number of grabbers = " + scalarsAttachedList.Count);
                 AttemptScale();
             }
             
@@ -88,6 +88,7 @@ public abstract class OC_BaseScalable : MonoBehaviour {
 
     public virtual void ScalarRemove(GameObject grabber)
     {
+        Debug.Log("TRYING TO REMOVE  A SCALAR");
         //if (grabber.Equals(GetComponent<OC_Grabber>()))
         if(scalarsAttachedList.Contains(grabber))
         {
@@ -100,14 +101,14 @@ public abstract class OC_BaseScalable : MonoBehaviour {
     {
         while (currentlyScaling)
         {
-            if (scalarsAttachedList.Count >= minScalarNumForScale)
+            if (scalarsAttachedList.Count == minScalarNumForScale)
             {
                 float currDistance = Vector3.Distance(scalarsAttachedList[0].transform.position, scalarsAttachedList[1].transform.position);
-                Debug.Log("SnapShot Dist = " + snapShotDistance);
-                Debug.Log("Current Dist = " + currDistance);
+                //Debug.Log("SnapShot Dist = " + snapShotDistance);
+                //Debug.Log("Current Dist = " + currDistance);
                 //transform.localScale =  Vector3.one * currDistance/snapShotDistance * SnapShotOfScale /*multiplier * distFromUser*/;
                 transform.localScale = Vector3.one * ((currDistance / snapShotDistance) * snapShotOfScaleFloat) /*multiplier * distFromUser*/;
-                Debug.Log("Current SCALE = " + transform.localScale);
+                //Debug.Log("Current SCALE = " + transform.localScale);
             }
             yield return 0;
         }

@@ -84,7 +84,7 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
     {
         //Do something
         grabActive = false;
-        Debug.Log("Grab Ended.");
+        Debug.Log("Grab Ended. -- From Controller");
     }
 
     //protected variables
