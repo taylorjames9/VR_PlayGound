@@ -73,8 +73,8 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         {
             //GetComponent<Rigidbody>().velocity = (Vector3.one + grabber.GetComponent<Rigidbody>().velocity) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
             GetComponent<Rigidbody>().velocity = (VRTK_DeviceFinder.GetControllerVelocity(grabber.gameObject)) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
-
-            GetComponent<Rigidbody>().angularVelocity = grabber.GetComponent<Rigidbody>().angularVelocity;
+            GetComponent<Rigidbody>().angularVelocity = VRTK_DeviceFinder.GetControllerAngularVelocity(grabber.gameObject);
+            //GetComponent<Rigidbody>().angularVelocity = grabber.GetComponent<Rigidbody>().angularVelocity;
             if (GetComponent<OC_BaseThrowable>().ZeroGravityThrow)
             {
                 GetComponent<Rigidbody>().useGravity = false;
