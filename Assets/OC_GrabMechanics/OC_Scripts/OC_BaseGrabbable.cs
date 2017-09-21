@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 
 //Intended Usage//
@@ -70,7 +71,9 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         ///This is a hack. This shouldn't be here. It should be in a throwable script
         if (GetComponent<OC_BaseThrowable>() != null)
         {
-            GetComponent<Rigidbody>().velocity = (Vector3.one + grabber.GetComponent<Rigidbody>().velocity) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
+            //GetComponent<Rigidbody>().velocity = (Vector3.one + grabber.GetComponent<Rigidbody>().velocity) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
+            GetComponent<Rigidbody>().velocity = (VRTK_DeviceFinder.GetControllerVelocity(grabber.gameObject)) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
+
             GetComponent<Rigidbody>().angularVelocity = grabber.GetComponent<Rigidbody>().angularVelocity;
             if (GetComponent<OC_BaseThrowable>().ZeroGravityThrow)
             {

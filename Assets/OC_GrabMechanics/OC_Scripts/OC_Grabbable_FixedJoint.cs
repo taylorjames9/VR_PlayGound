@@ -49,20 +49,20 @@ public class OC_Grabbable_FixedJoint : OC_BaseGrabbable
         {
             CreateTempJoint(grabber1);
         }
-        Debug.Log("RAN IMPORTTTTNNNAATT Start GRAB");
+        //Debug.Log("RAN IMPORTTTTNNNAATT Start GRAB");
     }
 
     protected override void EndGrab(OC_Grabber grabber1)
     {
         base.EndGrab(grabber1);
-        Debug.Log("END GRAB DESTROYING FIXED JOINT");
+        //Debug.Log("END GRAB DESTROYING FIXED JOINT");
 
         if (GetComponent<FixedJoint>() != null)
         {
             //GetComponent<FixedJoint>().an
             GetComponent<FixedJoint>().connectedBody = null;
             Destroy(gameObject.GetComponent<FixedJoint>());
-            Debug.Log("DESTRYOED THE FIXED JOINT");
+            //Debug.Log("DESTRYOED THE FIXED JOINT");
         }
     }
 
