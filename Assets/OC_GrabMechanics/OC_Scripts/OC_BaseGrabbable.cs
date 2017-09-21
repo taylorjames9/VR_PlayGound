@@ -67,6 +67,19 @@ public abstract class OC_BaseGrabbable : MonoBehaviour
         {
             GrabEnded(grabber.gameObject);
         }
+        ///This is a hack. This shouldn't be here. It should be in a throwable script
+        if (GetComponent<OC_BaseThrowable>() != null)
+        {
+            GetComponent<Rigidbody>().velocity = (Vector3.one + grabber.GetComponent<Rigidbody>().velocity) * grabber.Strength * GetComponent<OC_ThrowableObject>().ThrowMultiplier;
+            GetComponent<Rigidbody>().angularVelocity = grabber.GetComponent<Rigidbody>().angularVelocity;
+            if (GetComponent<OC_BaseThrowable>().ZeroGravityThrow)
+            {
+                GetComponent<Rigidbody>().useGravity = false;
+            }
+
+            Debug.Log("THROWING! Veloctiy = "+ GetComponent<Rigidbody>().velocity);
+        }
+        ///
         Debug.Log("End Grab -- from grabbable");
     }
 

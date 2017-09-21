@@ -34,6 +34,7 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
     public bool GrabActive { get { return grabActive; } set { grabActive = value; } }
     public GameObject HeldObject { get { return heldObject; } set { heldObject = value; } }
     public Vector3 Velocity { get { return velocity; } set { velocity = value; } }
+    public float Strength { get { return strength; } set { strength = value; } }
 
 
     protected virtual void OnEnable()
@@ -109,6 +110,8 @@ public abstract class OC_BaseGrabber : MonoBehaviour {
     private GameObject myGrabbedObject;
     private float scaleMulitplier;
     private Vector3 attachPoint;
+    [SerializeField]
+    private float strength =1.0f;
 
 
 }

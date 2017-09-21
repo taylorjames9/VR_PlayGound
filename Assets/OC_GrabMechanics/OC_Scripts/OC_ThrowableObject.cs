@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OC_ThrowableObject : MonoBehaviour {
+public class OC_ThrowableObject : OC_BaseThrowable {
 
 	// Use this for initialization
 	void Start () {

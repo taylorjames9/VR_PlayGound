@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class OC_Base_Throwable {
+public abstract class OC_BaseThrowable: MonoBehaviour {
 
 
-    public float Throw_Acceleration { get { return throw_acceleration; } set { throw_acceleration = value; } }
-    private float throw_acceleration;
+    public float ThrowMultiplier { get { return throwMultiplier; } set { throwMultiplier = value; } }
+    public bool ZeroGravityThrow { get { return zeroGravityThrow; } set { zeroGravityThrow = value; } }
 
     protected virtual void BeginThrow()
     {
@@ -28,5 +28,10 @@ public abstract class OC_Base_Throwable {
         Debug.Log("Throw canceled");
     }
 
+    [SerializeField]
+    private float throwMultiplier;
+
+    [SerializeField]
+    private bool zeroGravityThrow;
 
 }
